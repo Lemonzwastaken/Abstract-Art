@@ -10,7 +10,6 @@ A collection of Python scripts that generate beautiful abstract art using the `t
 |:-----------:|:-----------:|:----------------:|
 | ![Spirograph](spirograph/generated_images/spirograph.png) | ![Random Walk](random-walk/generated_Images/randomwalk.png) | ![Hirst Dotted Art](hirst-dotted-art/generated_Images/hirst-dotted-art.png) |
 
-> 💡 *Add your own generated images to the paths above to populate the gallery!*
 
 ---
 
