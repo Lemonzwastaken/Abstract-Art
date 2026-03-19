@@ -3,6 +3,14 @@ import random
 import os
 from PIL import Image
 
+#CONSTANTS (Customizable)
+RADIUS = 150 #How big the circle should be
+INCREMENT = 1 #How much increment do you want between the circles(in rotation)
+SAVE_PATH = r"spirograph\generated_images\spirograph.png" # Where do you want to save the image
+PENSIZE = 15 #PENSIZE
+
+
+
 timmy = turtle.Turtle()
 screen = turtle.Screen()
 turtle.colormode(255)
@@ -17,18 +25,16 @@ def random_color():
 timmy.color('LimeGreen')
 timmy.speed(0)
 
-radius = int(input("What is the radius of the circle: "))
-increment = int(input("How much space do you want between the circles: "))
 
-for rad in range(int(360/increment)):
+for rad in range(int(360/INCREMENT)):
 
-    timmy.circle(radius)
-    timmy.right(increment)
+    timmy.circle(RADIUS)
+    timmy.right(INCREMENT)
     timmy.color(random_color())
 
-
+timmy.penup()
+timmy.goto(1000,1000)
 # Save as EPS first, then convert to PNG and removes the eps
-save_path = r"spirograph\generated_images\spirograph.png"
 eps_path = "randomwalk.eps"
 
 canvas = screen.getcanvas()
@@ -44,9 +50,9 @@ img.close()
 print("Image size:", img_copy.size)
 print("Image mode:", img_copy.mode)
 
-img_copy.save(save_path)
-print("PNG saved:", os.path.exists(save_path))
-print("Saved to:", os.path.abspath(save_path))
+img_copy.save(SAVE_PATH)
+print("PNG saved:", os.path.exists(SAVE_PATH))
+print("Saved to:", os.path.abspath(SAVE_PATH))
 
 os.remove(eps_path)
 

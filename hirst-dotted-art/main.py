@@ -1,7 +1,16 @@
+#CONSTANTS
+
+LINES = 10 #How many lines of dots do you want(still not optimised to fit screen)
+DOTS = 10 #How many dots you want per line(still not optimised to fit screen)
+COLOR_EXTRACTION_PATH = r'hirst-dotted-art\reference_image.jpg' #Path of the image where you want to extract the colors from
+RADIUS = 25 #Radius of the dot
+DISTANCE = 50 #Distance between the dots
+SAVE_PATH = r"hirst-dotted-art\generated_Images\hirst-dotted-art.png" #Path where you want to save the image
+
 #EXTRACTS COLOR FROM A COLOR PALLET WE LIKE
 import colorgram
 rgb_colors = []
-colors = colorgram.extract('hirst-dotted-art\image.jpg', 30)
+colors = colorgram.extract(COLOR_EXTRACTION_PATH, 30)
 for color in colors:
     r = color.rgb.r
     g = color.rgb.g
@@ -25,26 +34,25 @@ timmy.forward(300)
 timmy.setheading(0)
 
 def draw_dots():
-    for _ in range(10):
-        timmy.dot(25, random.choice(rgb_colors))
-        timmy.forward(50)
+    for _ in range(DOTS):
+        timmy.dot(RADIUS, random.choice(rgb_colors))
+        timmy.forward(DISTANCE)
         
 def change_line():
     timmy.setheading(90)
     timmy.forward(50)
     timmy.setheading(180)
-    timmy.forward(500)
+    timmy.forward(DISTANCE*DOTS)
     timmy.setheading(0)
 
-lines = int(input("How many lines do you want: "))
 
-for dots in range(lines):
+for dots in range(LINES):
     draw_dots()
     change_line()
 
 
+timmy.goto(1000,1000)
 
-save_path = r"hirst-dotted-art\generated_Images\hirst-dotted-art.png"
 eps_path = "randomwalk.eps"
 
 canvas = screen.getcanvas()
@@ -60,14 +68,11 @@ img.close()
 print("Image size:", img_copy.size)
 print("Image mode:", img_copy.mode)
 
-img_copy.save(save_path)
-print("PNG saved:", os.path.exists(save_path))
-print("Saved to:", os.path.abspath(save_path))
+img_copy.save(SAVE_PATH)
+print("PNG saved:", os.path.exists(SAVE_PATH))
+print("Saved to:", os.path.abspath(SAVE_PATH))
 
 os.remove(eps_path)
-
-
-screen.exitonclick()
 
 
 screen.exitonclick()
